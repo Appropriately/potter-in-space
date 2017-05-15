@@ -13,3 +13,7 @@ body {
   width: auto;
   position: relative;
 }
+
+.music {
+  display: none;
+}

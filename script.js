@@ -46,7 +46,6 @@ function movement(elise,x,y,ranX,ranY) {
   if (iterations < 200) {
     elise.style.top  = (y+(iterations*ranY)) + 'px';
     elise.style.left = (x+(iterations*ranX)) + 'px';
-    console.log(iterations);
     iterations++;
     setTimeout(function(){movement(elise, x, y,ranX,ranY)}, 50);
   } else {
