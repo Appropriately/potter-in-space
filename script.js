@@ -30,16 +30,32 @@ function setup(elise, width, height) {
   || document.body.clientWidth;
 
   // Generate random position
-  posY = elise.style.top = Math.random() * height;
-  posX = elise.style.left = Math.random() * width;
+  posY = elise.style.top = (height/2) + (Math.random() * (height/10) - height/5);
+  posX = elise.style.left = (width/2) + (Math.random() * (width/10) - width/5);
+
+  elise.style.height = (2 + Math.random() * 15) + "vh";
 
   // Generate some values
   randomX = generateNumber();
   randomY = generateNumber();
 
+  $( "#elise" ).fadeIn("slow", false);
+  //fadeIn(elise);
+
   // Do the movement
   setTimeout(function(){movement(elise, posX, posY,randomX,randomY)}, 50);
 } // setup
+
+function fadeIn(element) {
+  element.style.opacity = 0;
+  while(element.style.opacity < 0.9) element.style.opacity += 0.01;
+} // fadeIn
+
+function fadeOut(element) {
+  element.style.opacity = 1;
+  while(element.style.opacity > 0) element.style.opacity -= 0.01;
+} // fadeOut
+
 
 // The function is passed values and then moves by those appropriate values
 function movement(elise,x,y,ranX,ranY) {
@@ -49,7 +65,10 @@ function movement(elise,x,y,ranX,ranY) {
     iterations++;
     setTimeout(function(){movement(elise, x, y,ranX,ranY)}, 50);
   } else {
-    setTimeout(function(){setup(elise, width, height)},10);
+    //fadeOut(elise);
+    $( "#elise" ).fadeOut("slow", function() {
+      setTimeout(function(){setup(elise, width, height)},10);
+    });
   } // if/else
 } // movement
 
