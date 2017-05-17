@@ -44,7 +44,7 @@ function randomSetup(elise, width, height) {
   posX = elise.style.left = (width/2) + (Math.random() * (width/10) - width/5);
 
   // Set a random size
-  elise.style.height = (2 + Math.random() * 15) + "vh";
+  elise.style.height = (10 + Math.random() * 10) + "vh";
 
   // Generate some values
   randomX = generateNumber();
