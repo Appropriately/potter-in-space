@@ -1,5 +1,4 @@
 var iterations = 0;
-var elise = document.getElementById("elise");
 
 var width;
 var height;
@@ -9,15 +8,26 @@ var backgrounds = [
     "url(backgrounds/image.png)", "url(backgrounds/test.jpg)"
 ];
 
+var elises = [
+  "elise.png", "elise1.png", "elise2.png"
+];
 
+function setup() {
+  setTimeout(function(){ magic(); }, 3000);
+} // setup
 
 function magic() {
-  setup(elise, width, height);
+  $( ".overlay" ).fadeOut("slow");
+  var elise = document.getElementById("elise");
+  setTimeout(function(){randomSetup(elise, width, height)},10);
 } // magic
 
-function setup(elise, width, height) {
+function randomSetup(elise, width, height) {
+  // Do some randomizing
   var randomValue = Math.floor(Math.random()*backgrounds.length);
   document.body.style.backgroundImage = backgrounds[randomValue];
+  randomValue = Math.floor(Math.random()*elises.length);
+  elise.src = elises[randomValue];
 
   var randomX, randomY, posX, posY;
   iterations = 0;
@@ -33,6 +43,7 @@ function setup(elise, width, height) {
   posY = elise.style.top = (height/2) + (Math.random() * (height/10) - height/5);
   posX = elise.style.left = (width/2) + (Math.random() * (width/10) - width/5);
 
+  // Set a random size
   elise.style.height = (2 + Math.random() * 15) + "vh";
 
   // Generate some values
@@ -44,7 +55,7 @@ function setup(elise, width, height) {
 
   // Do the movement
   setTimeout(function(){movement(elise, posX, posY,randomX,randomY)}, 50);
-} // setup
+} // randomSetup
 
 function fadeIn(element) {
   element.style.opacity = 0;
@@ -67,7 +78,7 @@ function movement(elise,x,y,ranX,ranY) {
   } else {
     //fadeOut(elise);
     $( "#elise" ).fadeOut("slow", function() {
-      setTimeout(function(){setup(elise, width, height)},10);
+      setTimeout(function(){randomSetup(elise, width, height)},10);
     });
   } // if/else
 } // movement
