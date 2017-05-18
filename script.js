@@ -16,18 +16,27 @@ function setup() {
   setTimeout(function(){ magic(); }, 3000);
 } // setup
 
+// Function that fades the opening of the site and begins the loop
 function magic() {
   $( ".overlay" ).fadeOut("slow");
   var elise = document.getElementById("elise");
-  setTimeout(function(){randomSetup(elise, width, height)},10);
+  $( "#elise" ).fadeOut("fast", false);
+  $( "#background" ).fadeOut("fast", false);
+  setTimeout(function(){begin(elise, width, height)},10);
 } // magic
+
+function begin(elise,width,height) {
+  randomBackground();
+  $( "#background" ).fadeIn("slow", function() {
+    setTimeout(function(){randomSetup(elise, width, height)},10);
+  });
+} // begin
+
 
 function randomSetup(elise, width, height) {
   // Do some randomizing
-  var randomValue = Math.floor(Math.random()*backgrounds.length);
-  document.body.style.backgroundImage = backgrounds[randomValue];
-  randomValue = Math.floor(Math.random()*elises.length);
-  elise.src = elises[randomValue];
+
+  randomElise(elise);
 
   var randomX, randomY, posX, posY;
   iterations = 0;
@@ -51,22 +60,23 @@ function randomSetup(elise, width, height) {
   randomY = generateNumber();
 
   $( "#elise" ).fadeIn("slow", false);
+
   //fadeIn(elise);
 
   // Do the movement
   setTimeout(function(){movement(elise, posX, posY,randomX,randomY)}, 50);
 } // randomSetup
 
-function fadeIn(element) {
-  element.style.opacity = 0;
-  while(element.style.opacity < 0.9) element.style.opacity += 0.01;
-} // fadeIn
+// A function that generates a random background
+function randomBackground() {
+  var randomValue = Math.floor(Math.random()*backgrounds.length);
+  document.getElementById("background").style.backgroundImage = backgrounds[randomValue];
+} // randomBackground
 
-function fadeOut(element) {
-  element.style.opacity = 1;
-  while(element.style.opacity > 0) element.style.opacity -= 0.01;
-} // fadeOut
-
+function randomElise(elise) {
+  var randomValue = Math.floor(Math.random()*elises.length);
+  elise.src = elises[randomValue];
+}
 
 // The function is passed values and then moves by those appropriate values
 function movement(elise,x,y,ranX,ranY) {
@@ -77,8 +87,9 @@ function movement(elise,x,y,ranX,ranY) {
     setTimeout(function(){movement(elise, x, y,ranX,ranY)}, 50);
   } else {
     //fadeOut(elise);
+    $( "#background" ).fadeOut("slow", false);
     $( "#elise" ).fadeOut("slow", function() {
-      setTimeout(function(){randomSetup(elise, width, height)},10);
+      setTimeout(function(){begin(elise, width, height)},10);
     });
   } // if/else
 } // movement
