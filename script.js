@@ -5,7 +5,7 @@ var height;
 
 var backgrounds = [
     "url(backgrounds/wallpaper.jpg)", "url(backgrounds/wallpaper1.jpg)",
-    "url(backgrounds/image.png)", "url(backgrounds/test.jpg)"
+    "url(backgrounds/img.jpg)", "url(backgrounds/test.jpg)"
 ];
 
 var elises = [
