@@ -11,19 +11,13 @@ body {
 }
 
 #elise {
-  height: 5vw;
-  width: auto;
+  width: 5vw;
+  height: auto;
   position: relative;
   -webkit-animation: rotating 20s linear infinite;
 }
 
 .overlay {
-  /*
-  background: rgba(90, 53, 96, 0.5);
-  background: -moz-linear-gradient(-45deg, rgba(90, 53, 96, 0.5) 0%, rgba(232, 148, 101,0.5) 100%);
-  background: -webkit-linear-gradient(-45deg, rgba(90, 53, 96, 0.5) 0%, rgba(232, 148, 101,0.5) 100%);
-  background: linear-gradient(135deg, rgba(90, 53, 96, 0.5) 0%, rgba(232, 148, 101,0.5) 100%);
-  */
   background: black;
   z-index: 10;
   position: absolute;
